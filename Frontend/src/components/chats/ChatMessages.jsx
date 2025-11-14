@@ -8,7 +8,9 @@ const ChatMessages = ({ messages, isSending }) => {
   }, [messages.length, isSending]);
 
   return (
-    <div className="flex flex-col flex-1 w-full overflow-hidden gap-4 max-w-[820px] mx-auto pr-2" aria-live="polite">
+    <>
+     
+      <div className="flex flex-col w-full gap-4 max-w-[820px] mx-auto pr-2" aria-live="polite">
       {messages.map((m, index) => (
         <div key={index} className={`flex flex-col max-w-[780px] ${m.type === "user" ? "self-end" : "self-start"}`}>
           <div className="text-[0.65rem] uppercase tracking-wider text-gray-400 mb-1 font-semibold">
@@ -70,7 +72,8 @@ const ChatMessages = ({ messages, isSending }) => {
       )}
 
       <div ref={bottomRef} />
-    </div>
+      </div>
+    </>
   );
 };
 

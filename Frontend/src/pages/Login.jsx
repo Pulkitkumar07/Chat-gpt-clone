@@ -19,17 +19,24 @@ const Login = () => {
         { withCredentials: true }
       );
 
-      console.log("Login success", res);
-      navigate("/"); // Redirect after login
+      console.log("Login success", res.data);
+
+      
+       if (res.data?.user) {
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+         navigate("/");
+      }
+
+     
 
     } catch (err) {
-      console.log("Error", err);
+      console.error("Error", err);
       alert(err.response?.data?.message || "Something went wrong");
     }
   };
 
   return (
-   <div className="min-h-screen flex items-center justify-center bg-[#0F0F10] text-white">
+    <div className="min-h-screen flex items-center justify-center bg-[#0F0F10] text-white">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-96 p-6 bg-[#18191C] rounded-2xl shadow-xl flex flex-col gap-4"
@@ -67,7 +74,7 @@ const Login = () => {
         </div>
 
         {/* Login Button */}
-        <button className="mt-4 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-lg font-medium">
+        <button type="submit" className="mt-4 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-lg font-medium">
           Login
         </button>
 
@@ -81,7 +88,6 @@ const Login = () => {
       </form>
     </div>
   );
-
 };
 
 export default Login;

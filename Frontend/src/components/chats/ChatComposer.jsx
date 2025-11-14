@@ -1,7 +1,8 @@
 import React, { useCallback, useRef, useLayoutEffect } from 'react';
 
-const ChatComposer = ({ input, setInput, onSend, isSending }) => {
+const ChatComposer = ({ input, setInput, onSend, isSending, onHeightChange }) => {
   const textareaRef = useRef(null);
+  const formRef = useRef(null);
 
   
   useLayoutEffect(() => {
@@ -9,6 +10,12 @@ const ChatComposer = ({ input, setInput, onSend, isSending }) => {
     if (!el) return;
     el.style.height = 'auto';
     el.style.height = Math.min(el.scrollHeight, 320) + 'px';
+   
+    try {
+      const parentEl = formRef.current?.parentElement;
+      const fh = parentEl ? parentEl.offsetHeight : formRef.current?.offsetHeight ?? el.offsetHeight;
+      if (onHeightChange) onHeightChange(fh + 'px');
+    } catch {}
   }, [input]);
 
   const handleKeyDown = useCallback((e) => {
@@ -20,8 +27,9 @@ const ChatComposer = ({ input, setInput, onSend, isSending }) => {
 
   return (
     <form
+      ref={formRef}
       onSubmit={e => { e.preventDefault(); if (input.trim()) onSend(); }}
-      className="sticky bottom-0 w-full flex justify-center pt-4 pb-6 bg-black/90 backdrop-blur-md z-10"
+      className="w-full flex justify-center py-3 bg-black/90 backdrop-blur-md z-10"
     >
       <div className="flex items-end gap-3 max-w-3xl w-full mx-4 bg-black border border-gray-800 rounded-3xl px-5 py-3 shadow-md focus-within:border-gray-500 focus-within:ring-1 focus-within:ring-gray-500 transition">
         

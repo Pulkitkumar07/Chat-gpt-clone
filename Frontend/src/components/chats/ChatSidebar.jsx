@@ -1,7 +1,7 @@
-import { Plus, X } from "lucide-react";
+import { Plus } from "lucide-react";
 import { useState } from "react";
 
-const ChatSidebar = ({ chats, activeChatId, onSelectChat, onNewChat, onDeleteChat, open }) => {
+const ChatSidebar = ({ chats, activeChatId, onSelectChat, onNewChat, open }) => {
   const [search, setSearch] = useState("");
 
   const filteredChats = chats.filter(c =>
@@ -10,7 +10,7 @@ const ChatSidebar = ({ chats, activeChatId, onSelectChat, onNewChat, onDeleteCha
 
   return (
     <aside
-      className={`fixed top-0 bottom-0 left-0 z-40 w-[250px] flex-shrink-0 border-r border-gray-900 bg-black/95 backdrop-blur-md transform transition-transform duration-200 pt-14 md:static md:pt-0 md:translate-x-0 ${
+      className={`fixed top-0 left-0 z-40 w-[250px] h-screen border-r border-gray-900 bg-black/80 backdrop-blur-md transform transition-transform duration-200 pt-14 md:static md:pt-0 md:translate-x-0 ${
         open ? "translate-x-0" : "-translate-x-[270px]"
       }`}
     >
@@ -37,7 +37,7 @@ const ChatSidebar = ({ chats, activeChatId, onSelectChat, onNewChat, onDeleteCha
       </div>
 
       {/* Chat List */}
-      <nav className="flex flex-col gap-1 p-3 overflow-y-auto h-full" aria-live="polite">
+      <nav className="flex flex-col gap-1 p-3 overflow-y-auto h-[calc(100vh-120px)]">
         {filteredChats.map((c) => (
           <div
             key={c._id}
@@ -51,7 +51,6 @@ const ChatSidebar = ({ chats, activeChatId, onSelectChat, onNewChat, onDeleteCha
             >
               {c.title}
             </button>
-           
           </div>
         ))}
 
