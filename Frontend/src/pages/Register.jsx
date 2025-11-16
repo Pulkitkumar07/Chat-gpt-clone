@@ -11,7 +11,7 @@ const Register = () => {
   const onSubmit = async (data) => {
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/auth/register",
+        "https://chat-gpt-cloneai.onrender.com/api/auth/register",
         {
           firstName: data.firstName,
           lastName: data.lastName,
