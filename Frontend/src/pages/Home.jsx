@@ -15,7 +15,7 @@ import {
   setChats,
 } from "../store/chatSlice.js";
 
-const BASE_URL = "https://chat-gpt-clone-1-gz4v.onrender.com";
+const BASE_URL = "https://chat-gpt-clone-l6md.onrender.com";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -67,7 +67,7 @@ const Home = () => {
       .then((res) => dispatch(setChats(res.data.chats.reverse())))
       .catch(() => {});
 
-    const s = io("https://chat-gpt-clone-1-gz4v.onrender.com", {
+    const s = io("https://chat-gpt-clone-l6md.onrender.com", {
       withCredentials: true,
       transports: ["websocket"],
     });

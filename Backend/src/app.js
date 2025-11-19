@@ -9,7 +9,7 @@ const app=express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: "https://chat-gpt-clone-1-gz4v.onrender.com",
+    origin: "https://chat-gpt-clone-l6md.onrender.com",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 }));
