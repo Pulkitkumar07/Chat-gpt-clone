@@ -65,7 +65,7 @@ const Home = () => {
     axios
       .get(`${BASE_URL}/chat`, { withCredentials: true })
       .then((res) => dispatch(setChats(res.data.chats.reverse())))
-      .catch(() => {});
+      .catch(() => { });
 
     const s = io("https://chat-gpt-clone-l6md.onrender.com", {
       withCredentials: true,
@@ -73,8 +73,9 @@ const Home = () => {
     });
 
     s.on("ai-response", (payload) => {
+      if (payload.chat !== activeChatId) { dispatch(sendingFinished()); return; };
       setMessages((prev) => [...prev, { type: "ai", content: payload.content }]);
-      dispatch(sendingFinished());
+
     });
 
     setSocket(s);
@@ -93,7 +94,7 @@ const Home = () => {
 
   return (
     <div className=" flex  h-screen bg-black  text-white ">
-    
+
       <div className="hidden md:flex">
         <ChatSidebar
           chats={chats}
@@ -140,9 +141,9 @@ const Home = () => {
         </div>
       )}
 
-   
+
       <main className="flex flex-col   flex-1 min-h-0">
-   
+
         <div className="flex-1 overflow-y-auto px-4 py-3">
           {messages.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center px-4">
@@ -157,7 +158,7 @@ const Home = () => {
           )}
         </div>
 
-      
+
         <div className="border-t border-neutral-800 bg-black/95 backdrop-blur-sm p-3">
           <ChatComposer
             input={input}
