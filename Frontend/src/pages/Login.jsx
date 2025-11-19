@@ -11,7 +11,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/auth/login",
+        "https://chat-gpt-clone-hcp6.onrender.com/auth/login",
         {
           email: data.email,
           password: data.password,
