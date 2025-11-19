@@ -17,10 +17,10 @@ app.use(cors({
 app.use('/api/auth',authRoutes)
 app.use('/api/chat',chatRoutes)
 
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, 'public/dist')));
 
-app.get("*name", (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/dist/index.html'));
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'dist', 'index.html'));
 });
 
 module.exports=app;
