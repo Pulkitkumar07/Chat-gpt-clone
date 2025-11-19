@@ -15,7 +15,7 @@ import {
   setChats,
 } from "../store/chatSlice.js";
 
-const BASE_URL = "https://chat-gpt-clone-l6md.onrender.com";
+const BASE_URL = "https://chat-gpt-clone-l6md.onrender.com/api";
 
 const Home = () => {
   const dispatch = useDispatch();
